@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import * as reducers from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import { fileUploadSaga } from './fileUploadSaga';
+import { messagesSaga } from './messagesSaga';
+import { acceptEulaSaga, declineEulaSaga } from './eulaSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +17,9 @@ export const store = createStore(combineReducers(reducers), applyMiddleware(saga
 store.subscribe(() => console.warn('STORE:', store.getState()));
 
 sagaMiddleware.run(fileUploadSaga);
+sagaMiddleware.run(messagesSaga);
+sagaMiddleware.run(acceptEulaSaga);
+sagaMiddleware.run(declineEulaSaga);
 
 ReactDOM.render(
     <Provider store={store}>

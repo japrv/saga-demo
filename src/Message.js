@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { addMessage, acceptEULA, declineEULA } from './messages';
+import {sendMessage, declineEULA, acceptEULA} from './messagesActionCreators';
 
-const Message = ({ messages, eula, addMessage, acceptEULA, declineEULA }) => {
+const Message = ({ messages, eula, sendMessage, acceptEULA, declineEULA }) => {
     let input;
     return (
         <div>
             <input ref={(el => input = el)} type='text'></input>
             <button onClick={() => {
                 if (input && input.value)
-                    addMessage(input && input.value);
+                    sendMessage(input && input.value);
             }}>Send</button>
             {messages.map(message => <div key={message.id}>
                 {message.id} {message.text} {message.status}
@@ -29,6 +29,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = { addMessage, acceptEULA, declineEULA };
+const mapDispatchToProps = { sendMessage, acceptEULA, declineEULA };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Message);

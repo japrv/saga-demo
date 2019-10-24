@@ -65,6 +65,7 @@ export const messages = (state = { messages: [], eula: {show: false, accepted: f
                 eula: {...state.eula, accepted: false, show: false}
             };
         case 'BUFFER_MESSAGE':
+            console.warn('BUFFER_MESSAGE', action.text);
             return {
                 ...state,
                 bufferedMessage: { text: action.text}
