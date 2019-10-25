@@ -30,7 +30,7 @@ export const fileUploader = (state = { status: 'Not started', file: 'No File' },
     }
 };
 
-export const messages = (state = { messages: [], eula: {show: false, accepted: false}, bufferedMessage: null }, action) => {
+export const messages = (state = { messages: [], eula: { show: false, accepted: false }, bufferedMessage: null }, action) => {
     switch (action.type) {
         case 'ADD_MESSAGE':
             return {
@@ -50,25 +50,23 @@ export const messages = (state = { messages: [], eula: {show: false, accepted: f
         case 'SHOW_EULA':
             return {
                 ...state,
-                eula: {...state.eula, show: true}
+                eula: { ...state.eula, show: true }
             };
         case 'ACCEPT_EULA':
             return {
                 ...state,
-                eula: {...state.eula, accepted: true, show: false}
+                eula: { ...state.eula, accepted: true, show: false }
             };
         case 'DECLINE_EULA':
-            console.warn('DECLINE_EULA');
             return {
                 ...state,
                 bufferedMessage: null,
-                eula: {...state.eula, accepted: false, show: false}
+                eula: { ...state.eula, accepted: false, show: false }
             };
         case 'BUFFER_MESSAGE':
-            console.warn('BUFFER_MESSAGE', action.text);
             return {
                 ...state,
-                bufferedMessage: { text: action.text}
+                bufferedMessage: {text: action.text }
             };
         default:
             return state;

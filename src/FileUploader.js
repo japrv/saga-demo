@@ -4,7 +4,6 @@ import { startFileUpload } from './fileUploadActionCreators';
 
 const FileUploader = (props) => {
     let { status, credentials, file, startFileUpload } = props;
-    console.warn(props);
     return (
         <div>
             Status: {status}

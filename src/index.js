@@ -19,7 +19,7 @@ store.subscribe(() => console.warn('STORE:', store.getState()));
 sagaMiddleware.run(fileUploadSaga);
 sagaMiddleware.run(messagesSaga);
 sagaMiddleware.run(acceptEulaSaga);
-sagaMiddleware.run(declineEulaSaga);
+// sagaMiddleware.run(declineEulaSaga);
 
 ReactDOM.render(
     <Provider store={store}>

@@ -15,7 +15,6 @@ export function sendMessage(text) {
 };
 
 export function bufferMessage(text) {
-    console.warn('bufferMessage');
     return {
         type: 'BUFFER_MESSAGE',
         text: text,

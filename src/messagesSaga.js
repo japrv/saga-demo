@@ -9,18 +9,14 @@ function* sendToChatServer(id) {
     yield timeout(1000);
     let result = randomTrueOrFalse();
     if (result) {
-        return put(messageDelivered(id));
+        yield put(messageDelivered(id));
     } else {
-        return put(messageNotDelivered(id));
+        yield put(messageNotDelivered(id));
     }
 }
 
-function* bufferMessageAndShowEula(text) {
-    yield put(bufferMessage(text));
-    yield put(showEULA());
-}
-
-function* addMessage(text) {
+function* addMessage(action) {
+    let {text} = action;
     let state = store.getState();
     if (!state.messages.eula.accepted) {
         yield put(bufferMessage(text));
@@ -35,5 +31,5 @@ function* addMessage(text) {
 };
 
 export function* messagesSaga() {
-    yield takeLatest('SEND_MESSAGE', addMessage);
+    yield takeEvery('SEND_MESSAGE', addMessage);
 }
